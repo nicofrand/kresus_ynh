@@ -2,6 +2,14 @@
 
 pkg_dependencies="dh-autoreconf	python3-pip python3-dev python3-lxml python3-pillow virtualenv postgresql"
 
+has_grsecurity=0
+# For kernels with grsecurity mprotect needs to be disabled, see
+# https://en.wikibooks.org/wiki/Grsecurity/Application-specific_Settings#Node.js
+if [ $(sysctl "kernel.grsecurity" 2> /dev/null | wc -l) -ne 0 ]; then
+	has_grsecurity=1
+	pkg_dependencies="$pkg_dependencies paxctl"
+fi
+
 # Send an email to inform the administrator
 #
 # usage: ynh_send_readme_to_admin app_message [recipients]

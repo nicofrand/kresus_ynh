@@ -149,6 +149,11 @@ virtualenv --python=python3 --system-site-packages "${final_path}/venv"
 ynh_script_progression --message="Installing app"
 ynh_use_nodejs
 (
+	if [ ${has_grsecurity} -ne 0 ]; then
+		ynh_print_warn --message="Grsecurity kernel detected, disabling mprotect for nodejs (see https://en.wikibooks.org/wiki/Grsecurity/Application-specific_Settings#Node.js)"
+		paxctl -Cm "$nodejs_path/node"
+	fi
+
 	cd "$final_path"
 	chown -R "$app": "$final_path"
 
