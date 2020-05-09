@@ -135,7 +135,17 @@ ynh_use_nodejs
 (
 	cd "$final_path"
 	chown -R "$app": "$final_path"
-	npm install --production --unsafe-perm
+
+	# Force node to the current node version (due to https://github.com/astro/node-expat/blob/master/binding.gyp#L7)
+	# Allow alias to be used into bash script
+    shopt -s expand_aliases
+	alias node="$nodejs_path/node"
+
+	# ynh_npm only exists for YunoHost 3.8+
+	"$nodejs_path/npm" install --production --unsafe-perm
+
+	# Remove previous alias
+	unalias node
 )
 
 #=================================================
