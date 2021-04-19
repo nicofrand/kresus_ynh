@@ -5,7 +5,7 @@
 #=================================================
 
 # dependencies used by the app
-pkg_dependencies="dh-autoreconf	python3-pip python3-dev python3-lxml python3-pillow virtualenv postgresql libffi-dev"
+pkg_dependencies="dh-autoreconf	python3-pip python3-dev python3-lxml python3-pillow virtualenv postgresql python3-selenium libffi-dev libxml2-dev libxslt-dev libyaml-dev libtiff-dev libjpeg-dev libopenjp2-7-dev zlib1g-dev libfreetype6-dev libwebp-dev build-essential yarn"
 
 nodejs_version=12
 
