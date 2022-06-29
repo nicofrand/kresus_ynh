@@ -145,7 +145,7 @@ ynh_script_progression --message="Installing app..."
 ynh_use_nodejs
 (
 	cd "$final_path"
-	ynh_exec_warn_less $ynh_npm install --production --unsafe-perm
+	ynh_exec_warn_less $ynh_npm install --production --unsafe-perm --legacy-peer-deps
 )
 chown -R $app:www-data "$final_path"
 
